@@ -1,36 +1,24 @@
 <!-- Title Field -->
 <div class="col-sm-12">
-    {!! Form::label('title', 'Title:') !!}
+    {!! Form::label('title', __('models/posts.fields.title').':') !!}
     <p>{{ $post->title }}</p>
 </div>
 
-<!-- Desc Field -->
+<!-- Description Field -->
 <div class="col-sm-12">
-    {!! Form::label('desc', 'Desc:') !!}
-    <p>{{ $post->desc }}</p>
-</div>
-
-<!-- Publish At Field -->
-<div class="col-sm-12">
-    {!! Form::label('publish_at', 'Publish At:') !!}
-    <p>{{ $post->publish_at }}</p>
-</div>
-
-<!-- Author Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('author_id', 'Author Id:') !!}
-    <p>{{ $post->author_id }}</p>
+    {!! Form::label('description', __('models/posts.fields.description').':') !!}
+    <p>{{ $post->description }}</p>
 </div>
 
 <!-- Created At Field -->
 <div class="col-sm-12">
-    {!! Form::label('created_at', 'Created At:') !!}
+    {!! Form::label('created_at', __('models/posts.fields.created_at').':') !!}
     <p>{{ $post->created_at }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
-    {!! Form::label('updated_at', 'Updated At:') !!}
+    {!! Form::label('updated_at', __('models/posts.fields.updated_at').':') !!}
     <p>{{ $post->updated_at }}</p>
 </div>
 

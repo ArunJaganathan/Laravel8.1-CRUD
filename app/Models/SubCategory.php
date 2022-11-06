@@ -3,32 +3,40 @@
 namespace App\Models;
 
 use Eloquent as Model;
-
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class SubCategory
  * @package App\Models
- * @version November 4, 2022, 8:15 am UTC
+ * @version November 6, 2022, 8:28 am UTC
  *
- * @property \App\Models\Category $category
  * @property string $title
- * @property string $desc
+ * @property string $description
+ * @property integer $category_id
+ * @property integer $status
  * @property string $image
  */
 class SubCategory extends Model
 {
+    use SoftDeletes;
 
+    use HasFactory;
 
-    public $table = 'subcategory';
+    public $table = 'sub_categories';
     
+
+    protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
         'title',
-        'desc',
-        'image'
+        'description',
+        'category_id',
+        'status',
+        'image',
+        'is_hot'
     ];
 
     /**
@@ -37,9 +45,12 @@ class SubCategory extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
         'title' => 'string',
-        'image' => 'string'
+        'description' => 'string',
+        'category_id' => 'integer',
+        'status' => 'integer',
+        'image' => 'string',
+        'is_hot' => 'integer',
     ];
 
     /**
@@ -48,14 +59,12 @@ class SubCategory extends Model
      * @var array
      */
     public static $rules = [
-        
+        'title' => 'required',
+        'description' => 'required',
+        'category_id' => 'required',
+        'status' => 'required',
+        'image' => 'required',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     **/
-    public function category()
-    {
-        return $this->hasOne(\App\Models\Category::class, 'cat_id', 'id');
-    }
+    
 }

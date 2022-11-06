@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Post
  * @package App\Models
- * @version November 4, 2022, 10:12 am UTC
+ * @version November 6, 2022, 8:38 am UTC
  *
  * @property string $title
- * @property string $desc
- * @property string $publish_at
- * @property integer $author_id
+ * @property string $description
  */
 class Post extends Model
 {
@@ -31,9 +29,7 @@ class Post extends Model
 
     public $fillable = [
         'title',
-        'desc',
-        'publish_at',
-        'author_id'
+        'description'
     ];
 
     /**
@@ -43,9 +39,7 @@ class Post extends Model
      */
     protected $casts = [
         'title' => 'string',
-        'desc' => 'string',
-        'publish_at' => 'date',
-        'author_id' => 'integer'
+        'description' => 'string'
     ];
 
     /**
@@ -54,7 +48,7 @@ class Post extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'requireds'
+        'title' => 'required'
     ];
 
     

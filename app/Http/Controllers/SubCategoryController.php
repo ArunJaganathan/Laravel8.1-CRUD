@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateSubCategoryRequest;
 use App\Repositories\SubCategoryRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-//use Intervention\Image\Facades\Image;
 use Flash;
 use Response;
 
@@ -30,7 +29,7 @@ class SubCategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $subCategories = $this->subCategoryRepository->paginate(10);
+        $subCategories = $this->subCategoryRepository->all();
 
         return view('sub_categories.index')
             ->with('subCategories', $subCategories);
@@ -55,9 +54,12 @@ class SubCategoryController extends AppBaseController
      */
     public function store(CreateSubCategoryRequest $request)
     {
-        //$input = $request->all();        
-        $subCategory = $this->subCategoryRepository->createPost($request);
-        Flash::success('Sub Category saved successfully.');
+        $input = $request->all();
+
+        $subCategory = $this->subCategoryRepository->create($input);
+
+        Flash::success(__('messages.saved', ['model' => __('models/subCategories.singular')]));
+
         return redirect(route('subCategories.index'));
     }
 
@@ -73,7 +75,7 @@ class SubCategoryController extends AppBaseController
         $subCategory = $this->subCategoryRepository->find($id);
 
         if (empty($subCategory)) {
-            Flash::error('Sub Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/subCategories.singular')]));
 
             return redirect(route('subCategories.index'));
         }
@@ -93,7 +95,7 @@ class SubCategoryController extends AppBaseController
         $subCategory = $this->subCategoryRepository->find($id);
 
         if (empty($subCategory)) {
-            Flash::error('Sub Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/subCategories.singular')]));
 
             return redirect(route('subCategories.index'));
         }
@@ -114,14 +116,14 @@ class SubCategoryController extends AppBaseController
         $subCategory = $this->subCategoryRepository->find($id);
 
         if (empty($subCategory)) {
-            Flash::error('Sub Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/subCategories.singular')]));
 
             return redirect(route('subCategories.index'));
         }
 
         $subCategory = $this->subCategoryRepository->update($request->all(), $id);
 
-        Flash::success('Sub Category updated successfully.');
+        Flash::success(__('messages.updated', ['model' => __('models/subCategories.singular')]));
 
         return redirect(route('subCategories.index'));
     }
@@ -140,14 +142,14 @@ class SubCategoryController extends AppBaseController
         $subCategory = $this->subCategoryRepository->find($id);
 
         if (empty($subCategory)) {
-            Flash::error('Sub Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/subCategories.singular')]));
 
             return redirect(route('subCategories.index'));
         }
 
         $this->subCategoryRepository->delete($id);
 
-        Flash::success('Sub Category deleted successfully.');
+        Flash::success(__('messages.deleted', ['model' => __('models/subCategories.singular')]));
 
         return redirect(route('subCategories.index'));
     }

@@ -58,7 +58,7 @@ class PostController extends AppBaseController
 
         $post = $this->postRepository->create($input);
 
-        Flash::success('Post saved successfully.');
+        Flash::success(__('messages.saved', ['model' => __('models/posts.singular')]));
 
         return redirect(route('posts.index'));
     }
@@ -75,7 +75,7 @@ class PostController extends AppBaseController
         $post = $this->postRepository->find($id);
 
         if (empty($post)) {
-            Flash::error('Post not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/posts.singular')]));
 
             return redirect(route('posts.index'));
         }
@@ -95,7 +95,7 @@ class PostController extends AppBaseController
         $post = $this->postRepository->find($id);
 
         if (empty($post)) {
-            Flash::error('Post not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/posts.singular')]));
 
             return redirect(route('posts.index'));
         }
@@ -116,14 +116,14 @@ class PostController extends AppBaseController
         $post = $this->postRepository->find($id);
 
         if (empty($post)) {
-            Flash::error('Post not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/posts.singular')]));
 
             return redirect(route('posts.index'));
         }
 
         $post = $this->postRepository->update($request->all(), $id);
 
-        Flash::success('Post updated successfully.');
+        Flash::success(__('messages.updated', ['model' => __('models/posts.singular')]));
 
         return redirect(route('posts.index'));
     }
@@ -142,14 +142,14 @@ class PostController extends AppBaseController
         $post = $this->postRepository->find($id);
 
         if (empty($post)) {
-            Flash::error('Post not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/posts.singular')]));
 
             return redirect(route('posts.index'));
         }
 
         $this->postRepository->delete($id);
 
-        Flash::success('Post deleted successfully.');
+        Flash::success(__('messages.deleted', ['model' => __('models/posts.singular')]));
 
         return redirect(route('posts.index'));
     }

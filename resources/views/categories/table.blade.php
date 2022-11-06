@@ -3,7 +3,9 @@
         <thead>
         <tr>
             <th>Title</th>
-        <th>Desc</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Image</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
@@ -11,7 +13,9 @@
         @foreach($categories as $category)
             <tr>
                 <td>{{ $category->title }}</td>
-            <td>{{ $category->desc }}</td>
+            <td>{{ $category->description }}</td>
+            <td>{{ $category->status }}</td>
+            <td><img src="{{ $category->image }}" width="50px;"></td>
                 <td width="120">
                     {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

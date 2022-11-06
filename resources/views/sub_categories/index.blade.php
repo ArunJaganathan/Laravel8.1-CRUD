@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Sub Categories</h1>
+                   @lang('models/subCategories.plural')
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('subCategories.create') }}">
-                        Add New
+                         @lang('crud.add_new')
                     </a>
                 </div>
             </div>
@@ -27,15 +27,15 @@
             <div class="card-body p-0">
                 @include('sub_categories.table')
 
-                <div class="card-footer clearfix">
+                <div class="card-footer clearfix float-right">
                     <div class="float-right">
-                        @include('adminlte-templates::common.paginate', ['records' => $subCategories])
+                        
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
 @endsection
+
 

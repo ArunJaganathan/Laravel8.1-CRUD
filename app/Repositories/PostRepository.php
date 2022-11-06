@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class PostRepository
  * @package App\Repositories
- * @version November 4, 2022, 10:12 am UTC
+ * @version November 6, 2022, 8:38 am UTC
 */
 
 class PostRepository extends BaseRepository
@@ -18,9 +18,7 @@ class PostRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'title',
-        'desc',
-        'publish_at',
-        'author_id'
+        'description'
     ];
 
     /**

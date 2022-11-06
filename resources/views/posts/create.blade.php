@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Post</h1>
+                     @lang('models/posts.singular')
                 </div>
             </div>
         </div>
@@ -20,16 +20,16 @@
             {!! Form::open(['route' => 'posts.store']) !!}
 
             <div class="card-body">
-
                 <div class="row">
                     @include('posts.fields')
                 </div>
-
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('posts.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('posts.index') }}" class="btn btn-default">
+                 @lang('crud.cancel')
+                </a>
             </div>
 
             {!! Form::close() !!}

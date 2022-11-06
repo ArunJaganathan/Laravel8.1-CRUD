@@ -2,18 +2,22 @@
     <table class="table" id="subCategories-table">
         <thead>
         <tr>
-            <th>Title</th>
-        <th>Desc</th>
-        <th>Image</th>
-            <th colspan="3">Action</th>
+            <th>@lang('models/subCategories.fields.title')</th>
+        <th>@lang('models/subCategories.fields.description')</th>
+        <th>@lang('models/subCategories.fields.category_id')</th>
+        <th>@lang('models/subCategories.fields.status')</th>
+        <th>@lang('models/subCategories.fields.image')</th>
+            <th colspan="3">@lang('crud.action')</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($subCategories as $subCategory)
+         @foreach($subCategories as $subCategory)
             <tr>
                 <td>{{ $subCategory->title }}</td>
-            <td>{{ $subCategory->desc }}</td>
-            <td><img src="{{ $subCategory->image }}" height="50px;"></td>
+            <td>{{ $subCategory->description }}</td>
+            <td>{{ $subCategory->category_id }}</td>
+            <td>{{ $subCategory->status }}</td>
+            <td>{{ $subCategory->image }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['subCategories.destroy', $subCategory->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -30,7 +34,7 @@
                     {!! Form::close() !!}
                 </td>
             </tr>
-        @endforeach
+         @endforeach
         </tbody>
     </table>
 </div>

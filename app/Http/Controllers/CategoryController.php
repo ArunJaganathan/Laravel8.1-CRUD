@@ -29,7 +29,7 @@ class CategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categories = $this->categoryRepository->paginate(10);
+        $categories = $this->categoryRepository->all();
 
         return view('categories.index')
             ->with('categories', $categories);
@@ -56,7 +56,7 @@ class CategoryController extends AppBaseController
     {
         $input = $request->all();
 
-        $category = $this->categoryRepository->create($input);
+        $category = $this->categoryRepository->createCategory($request);
 
         Flash::success('Category saved successfully.');
 
@@ -113,6 +113,8 @@ class CategoryController extends AppBaseController
      */
     public function update($id, UpdateCategoryRequest $request)
     {
+        echo '<pre>';
+        print_r($request);die;
         $category = $this->categoryRepository->find($id);
 
         if (empty($category)) {
@@ -120,6 +122,7 @@ class CategoryController extends AppBaseController
 
             return redirect(route('categories.index'));
         }
+
 
         $category = $this->categoryRepository->update($request->all(), $id);
 

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Sub Category</h1>
+                     @lang('models/subCategories.singular')
                 </div>
             </div>
         </div>
@@ -20,16 +20,16 @@
             {!! Form::open(['route' => 'subCategories.store', 'files' => true]) !!}
 
             <div class="card-body">
-
                 <div class="row">
                     @include('sub_categories.fields')
                 </div>
-
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('subCategories.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('subCategories.index') }}" class="btn btn-default">
+                 @lang('crud.cancel')
+                </a>
             </div>
 
             {!! Form::close() !!}

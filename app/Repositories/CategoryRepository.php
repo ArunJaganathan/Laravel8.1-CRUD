@@ -4,11 +4,12 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use App\Repositories\BaseRepository;
-
+use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 /**
  * Class CategoryRepository
  * @package App\Repositories
- * @version November 4, 2022, 8:11 am UTC
+ * @version November 5, 2022, 1:37 pm UTC
 */
 
 class CategoryRepository extends BaseRepository
@@ -18,7 +19,9 @@ class CategoryRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'title',
-        'desc'
+        'description',
+        'status',
+        'image'
     ];
 
     /**
@@ -37,5 +40,24 @@ class CategoryRepository extends BaseRepository
     public function model()
     {
         return Category::class;
+    }
+    public function createCategory(Request $request)
+    {
+        $file       = $request->file('image');
+        $org_file   = $file->getClientOriginalName();
+        $ext        = $file->getClientOriginalExtension();
+
+        $uqId       =  uniqid();
+        $path       = 'upload/'.$uqId.'.'.$ext;
+        $pathThumb  = 'upload/thumb/'.$uqId.'.'.$ext;
+
+        $image      = Image::make($file)->insert(public_path('logo.png'));
+        //$image->crop(100, 100);
+        $thumb      = Image::make($file)->resize(100, 100)->insert(public_path('logo.png'));
+        $image->save(public_path($path));
+        $image->save(public_path($pathThumb));
+        $input      = $request->all();
+        $input['image'] = $path;
+        return $this->create($input);
     }
 }

@@ -66,7 +66,8 @@ class CategoryDataTable extends DataTable
     {
         return [
             'title',
-            'desc' => ['searchable' => false]
+            'description',
+            'image'
         ];
     }
 

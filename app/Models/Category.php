@@ -3,29 +3,37 @@
 namespace App\Models;
 
 use Eloquent as Model;
-
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Category
  * @package App\Models
- * @version November 4, 2022, 8:11 am UTC
+ * @version November 5, 2022, 1:37 pm UTC
  *
  * @property string $title
- * @property string $desc
+ * @property string $description
+ * @property integer $status
+ * @property string $image
  */
 class Category extends Model
 {
+    use SoftDeletes;
 
+    use HasFactory;
 
-    public $table = 'category';
+    public $table = 'categories';
     
+
+    protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
         'title',
-        'desc'
+        'description',
+        'status',
+        'image'
     ];
 
     /**
@@ -34,8 +42,10 @@ class Category extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'title' => 'string'
+        'title' => 'string',
+        'description' => 'string',
+        'status' => 'integer',
+        'image' => 'string'
     ];
 
     /**
@@ -44,7 +54,9 @@ class Category extends Model
      * @var array
      */
     public static $rules = [
-        
+        'title' => 'required',
+        'status' => 'required',
+        'image' => 'required'
     ];
 
     

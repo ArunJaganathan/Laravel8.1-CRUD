@@ -2,20 +2,16 @@
     <table class="table" id="posts-table">
         <thead>
         <tr>
-            <th>Title</th>
-        <th>Desc</th>
-        <th>Publish At</th>
-        <th>Author Id</th>
-            <th colspan="3">Action</th>
+            <th>@lang('models/posts.fields.title')</th>
+        <th>@lang('models/posts.fields.description')</th>
+            <th colspan="3">@lang('crud.action')</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($posts as $post)
+         @foreach($posts as $post)
             <tr>
                 <td>{{ $post->title }}</td>
-            <td>{{ $post->desc }}</td>
-            <td>{{ $post->publish_at }}</td>
-            <td>{{ $post->author_id }}</td>
+            <td>{{ $post->description }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -32,7 +28,7 @@
                     {!! Form::close() !!}
                 </td>
             </tr>
-        @endforeach
+         @endforeach
         </tbody>
     </table>
 </div>
