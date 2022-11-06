@@ -35,3 +35,7 @@ To Generate New View
  - to map foregin key => author_id  integer selectTable:users:name,id
  - status integer select:Draft:1,Published:2,Archived:3
  - status integer radio:Draft:1,Published:2
+
+ Finally to run
+ ---
+ php artisan server
