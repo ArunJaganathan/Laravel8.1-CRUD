@@ -12,7 +12,9 @@ php artisan migrate
 To install each migration.File can be found in --- database\migrations
 ---
  php artisan migrate --path=/database/migrations/<file_name>
+
  php artisan migrate:refresh =>Datatable tables drop and insert.
+ 
  php artisan migrate =>Migrate all tables
 
 
