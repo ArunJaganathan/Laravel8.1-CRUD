@@ -4,6 +4,11 @@ For more details go through --
 https://infyom.com/open-source/laravelgenerator/docs/8.0/installation
 
 
+ - npm install 
+ - npm run dev
+
+----
+
 To add all support pacakges - 
 ---
 composer update
