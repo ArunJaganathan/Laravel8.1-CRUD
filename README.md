@@ -1,8 +1,18 @@
 Laravel 8 CRUD GENERATOR
+---
 
+ - need to install composer.
+ - PHP version (8.1)
+ - need to install node JS (The official Node.js website has installation instructions for Node.js: https://nodejs.org)
+ - need to install Laravel(8.0 through composer ==> from https://laravel.com/docs/8.x/installation)
+
+Step 1
+---
 For more details go through --
 https://infyom.com/open-source/laravelgenerator/docs/8.0/installation
 
+Once laravel generator step competed
+---
 
  - npm install 
  - npm run dev
