@@ -2,7 +2,7 @@ Laravel 8 CRUD GENERATOR
 ---
 
  - need to install composer.
- - PHP version (8.1)
+ - PHP version (8.1 => https://www.apachefriends.org/index.html)
  - need to install node JS (The official Node.js website has installation instructions for Node.js: https://nodejs.org)
  - need to install Laravel(8.0 through composer ==> from https://laravel.com/docs/8.x/installation)
 
