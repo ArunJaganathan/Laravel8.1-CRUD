@@ -49,3 +49,34 @@ To Generate New View
  Finally to run
  ---
  php artisan server
+
+
+ ===========================================
+
+ +---------------+     +---------------+
+| PRODUCTS      |-----<     SKUS      |
++---------------+     +---------------+
+|      id       |     |      id       |
+|     name      |     |  product_id   |
++---------------+     |      sku      |
+        |             |     price     |
+        |             |      qty      |
+        |             +---------------+
+        |                     |
++-------^-------+      +------^------+
+| VARIANTS      |------< SKU_VALUES  |
++---------------+      +-------------+
+|       id      |      |      id     |
+|  product_id   |      | product_id  |
+|     name      |      | variant_id  |
++---------------+      |variant_option_id   |
+        |              |    sku_id   |
+        |              +------v------+
++-------^-------+             |
+|VARIANT_OPTIONS|-------------+
++---------------+
+|      id       |
+|  product_id   |
+|  variant_id   |
+|     name      |
++---------------+
