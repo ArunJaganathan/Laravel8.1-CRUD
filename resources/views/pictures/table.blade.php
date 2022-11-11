@@ -2,6 +2,7 @@
     <table class="table" id="pictures-table">
         <thead>
         <tr>
+            <th>Title</th>
             <th>@lang('models/pictures.fields.name')</th>
             <th colspan="3">@lang('crud.action')</th>
         </tr>
@@ -9,7 +10,8 @@
         <tbody>
          @foreach($pictures as $pictures)
             <tr>
-                <td>{{ $pictures->name }}</td>
+                <td>{{ $pictures->profile_name }}</td>
+                <td><img src="upload/{{ $pictures->name }}" width="50px;"></td>
                 <td width="120">
                     {!! Form::open(['route' => ['pictures.destroy', $pictures->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

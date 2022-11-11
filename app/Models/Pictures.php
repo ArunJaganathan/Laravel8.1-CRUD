@@ -27,7 +27,7 @@ class Pictures extends Model
 
 
     public $fillable = [
-        'name'
+        'name','profile_name'
     ];
 
     /**
@@ -36,7 +36,8 @@ class Pictures extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string'
+        'name' => 'string',
+        'profile_name' => 'string'
     ];
 
     /**

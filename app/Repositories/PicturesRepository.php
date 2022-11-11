@@ -17,7 +17,7 @@ class PicturesRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name'
+        'name','profile_name'
     ];
 
     /**

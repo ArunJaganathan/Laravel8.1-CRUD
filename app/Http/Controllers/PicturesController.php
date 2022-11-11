@@ -35,12 +35,7 @@ class PicturesController extends AppBaseController
             ->with('pictures', $pictures);
     }
 
-    public function cropImageUpload()
-    {
-        print_r(_REQUEST);
-        print_r($_FILES);
-        die('dsf');
-    }
+    
 
     public function uploadCropImage(Request $request)
     {

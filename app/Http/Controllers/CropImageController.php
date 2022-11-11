@@ -28,10 +28,11 @@ class CropImageController extends Controller
  
         file_put_contents($imageFullPath, $image_base64);
  
-         $saveFile = new Picture;
-         $saveFile->name = $imageName;
-         $saveFile->save();
+         //$saveFile = new Picture;
+         //$saveFile->name = $imageName;
+         //$saveFile->profile_name = $request->profile_name;
+         //$saveFile->save();
     
-        return response()->json(['success'=>'Crop Image Uploaded Successfully']);
+        return response()->json(['success'=>'Crop Image Uploaded Successfully','image'=>$imageName]);
     }
 }

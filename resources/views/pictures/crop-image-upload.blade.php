@@ -91,38 +91,39 @@ reader.readAsDataURL(file);
 }
 });
 $modal.on('shown.bs.modal', function () {
-cropper = new Cropper(image, {
-aspectRatio: 1,
-viewMode: 3,
-preview: '.preview'
-});
+	cropper = new Cropper(image, {
+		aspectRatio: 1,
+		viewMode: 3,
+		preview: '.preview'
+	});
 }).on('hidden.bs.modal', function () {
 cropper.destroy();
-cropper = null;
+	cropper = null;
 });
 $("#crop").click(function(){
-canvas = cropper.getCroppedCanvas({
-width: 160,
-height: 160,
+	canvas = cropper.getCroppedCanvas({
+	width: 160,
+	height: 160,
 });
 canvas.toBlob(function(blob) {
 url = URL.createObjectURL(blob);
+
 var reader = new FileReader();
 reader.readAsDataURL(blob); 
-reader.onloadend = function() {
-var base64data = reader.result; 
-$.ajax({
-type: "POST",
-dataType: "json",
-url: "crop-image-upload",
-data: {'_token': $('meta[name="_token"]').attr('content'), 'image': base64data},
-success: function(data){
-console.log(data);
-$modal.modal('hide');
-alert("Crop image successfully uploaded");
-}
-});
-}
+	reader.onloadend = function() {
+		var base64data = reader.result; 
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: "crop-image-upload",
+			data: {'_token': $('meta[name="_token"]').attr('content'), 'image': base64data},
+			success: function(data){
+				console.log(data);
+				$modal.modal('hide');
+				alert("Crop image successfully uploaded");
+			}
+		});
+	}
 });
 })
 </script>
