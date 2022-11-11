@@ -49,3 +49,6 @@ To Generate New View
  Finally to run
  ---
  php artisan server
+
+
+ ================================ END =====================

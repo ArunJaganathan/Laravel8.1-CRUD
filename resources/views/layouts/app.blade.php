@@ -50,7 +50,12 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark">
    
-
+<ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      
+    </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">   
 
@@ -93,16 +98,16 @@
       </li>
       <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
-                         class="user-image img-circle elevation-2" alt="User Image">
+                    <!-- <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                         class="user-image img-circle elevation-2" alt="User Image"> -->
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                        <!-- <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
                              class="img-circle elevation-2"
-                             alt="User Image">
+                             alt="User Image"> -->
                         <p>
                             {{ Auth::user()->name }}
                             <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
@@ -150,6 +155,9 @@
     </footer>
 </div>
 
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous"></script>
@@ -190,6 +198,11 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 <script src="{{asset('js/adminlte.js')}}"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+
+
 <script>
     $(function () {
         bsCustomFileInput.init();
@@ -203,6 +216,8 @@
         height: 400
     });
 </script>
+
+
 
 @stack('third_party_scripts')
 

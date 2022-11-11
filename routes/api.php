@@ -34,3 +34,9 @@ Route::resource('sub_categories', App\Http\Controllers\API\SubCategoryAPIControl
 
 
 Route::resource('tests', App\Http\Controllers\API\TestAPIController::class);
+
+
+Route::resource('products', App\Http\Controllers\API\ProductAPIController::class);
+
+
+Route::resource('product_tests', App\Http\Controllers\API\ProductTestAPIController::class);

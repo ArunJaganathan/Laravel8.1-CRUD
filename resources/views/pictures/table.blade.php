@@ -1,25 +1,25 @@
 <div class="table-responsive">
-    <table class="table" id="posts-table">
+    <table class="table" id="pictures-table">
         <thead>
         <tr>
-            <th>@lang('models/posts.fields.title')</th>
-        <th>@lang('models/posts.fields.description')</th>
+            <th>Title</th>
+            <th>@lang('models/pictures.fields.name')</th>
             <th colspan="3">@lang('crud.action')</th>
         </tr>
         </thead>
         <tbody>
-         @foreach($posts as $post)
+         @foreach($pictures as $pictures)
             <tr>
-                <td>{{ $post->title }}</td>
-            <td>{!! Str::words("$post->description", 20, ' ...') !!}</td>
+                <td>{{ $pictures->profile_name }}</td>
+                <td><img src="upload/{{ $pictures->name }}" width="50px;"></td>
                 <td width="120">
-                    {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['pictures.destroy', $pictures->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{{ route('posts.show', [$post->id]) }}"
+                        <a href="{{ route('pictures.show', [$pictures->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-eye"></i>
                         </a>
-                        <a href="{{ route('posts.edit', [$post->id]) }}"
+                        <a href="{{ route('pictures.edit', [$pictures->id]) }}"
                            class='btn btn-default btn-xs'>
                             <i class="far fa-edit"></i>
                         </a>

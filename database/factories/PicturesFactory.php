@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
+use App\Models\Pictures;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+class PicturesFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Post::class;
+    protected $model = Pictures::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
-        'description' => $this->faker->text,
+            'name' => $this->faker->word,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];
