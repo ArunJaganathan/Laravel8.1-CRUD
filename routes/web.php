@@ -40,3 +40,13 @@ Route::resource('pictures', App\Http\Controllers\PicturesController::class);
 
 Route::get('crop-image-upload', [CropImageController::class, 'index']);
 Route::post('crop-image-upload', [CropImageController::class, 'uploadCropImage']);
+Route::post('crop-image-upload2', [CropImageController::class, 'uploadCropImage']);
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    Route::resource('products', App\Http\Controllers\ProductController::class);
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
