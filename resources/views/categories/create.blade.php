@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Category</h1>
+                     @lang('models/categories.singular')
                 </div>
             </div>
         </div>
@@ -17,19 +17,20 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'categories.store', 'files' => true]) !!}
+            {!! Form::open(['route' => 'categories.store']) !!}
 
             <div class="card-body">
-
                 <div class="row">
+                    
                     @include('categories.fields')
                 </div>
-
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('categories.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('categories.index') }}" class="btn btn-default">
+                 @lang('crud.cancel')
+                </a>
             </div>
 
             {!! Form::close() !!}

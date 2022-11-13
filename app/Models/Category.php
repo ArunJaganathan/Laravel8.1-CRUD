@@ -9,12 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Class Category
  * @package App\Models
- * @version November 5, 2022, 1:37 pm UTC
+ * @version November 13, 2022, 11:37 am UTC
  *
- * @property string $title
- * @property string $description
- * @property integer $status
- * @property string $image
+ * @property string $name
+ * @property string $slug
+ * @property integer $parent_id
  */
 class Category extends Model
 {
@@ -30,10 +29,9 @@ class Category extends Model
 
 
     public $fillable = [
-        'title',
-        'description',
-        'status',
-        'image'
+        'name',
+        'slug',
+        'parent_id'
     ];
 
     /**
@@ -42,10 +40,9 @@ class Category extends Model
      * @var array
      */
     protected $casts = [
-        'title' => 'string',
-        'description' => 'string',
-        'status' => 'integer',
-        'image' => 'string'
+        'name' => 'string',
+        'slug' => 'string',
+        'parent_id' => 'integer'
     ];
 
     /**
@@ -54,10 +51,17 @@ class Category extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'required',
-        'status' => 'required',
-        'image' => 'required'
+        'name' => 'required'
     ];
+    public function subcategory()
+    {
+        return $this->hasMany(\App\Models\Category::class, 'parent_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(\App\Models\Category::class, 'parent_id');
+    }
 
     
 }

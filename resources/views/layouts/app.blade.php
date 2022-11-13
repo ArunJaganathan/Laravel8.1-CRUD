@@ -105,9 +105,9 @@
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        <!-- <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
                              class="img-circle elevation-2"
-                             alt="User Image"> -->
+                             alt="User Image">
                         <p>
                             {{ Auth::user()->name }}
                             <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
@@ -198,6 +198,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 <script src="{{asset('js/adminlte.js')}}"></script>
+<script src="{{asset('js/jquery.nestable.js')}}"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>

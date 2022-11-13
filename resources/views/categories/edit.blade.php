@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Edit Category</h1>
+                      @lang('models/categories.singular')
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::model($category, ['route' => ['categories.update', $category->id], 'method' => 'patch', 'files' => true]) !!}
+            {!! Form::model($category, ['route' => ['categories.update', $category->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
@@ -27,7 +27,9 @@
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('categories.index') }}" class="btn btn-default">Cancel</a>
+                <a href="{{ route('categories.index') }}" class="btn btn-default">
+                    @lang('crud.cancel')
+                 </a>
             </div>
 
             {!! Form::close() !!}

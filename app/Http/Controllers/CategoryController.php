@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Category;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
@@ -42,7 +42,33 @@ class CategoryController extends AppBaseController
      */
     public function create()
     {
-        return view('categories.create');
+        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get();
+        return view('categories.create', compact('categories'));
+    }
+
+    public function createCategory(Request $request)
+    {
+        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get();
+        if($request->method()=='GET')
+        {
+            return view('create-category', compact('categories'));
+        }
+        if($request->method()=='POST')
+        {
+            $validator = $request->validate([
+                'name'      => 'required',
+                'slug'      => 'required|unique:categories',
+                'parent_id' => 'nullable|numeric'
+            ]);
+
+            Category::create([
+                'name' => $request->name,
+                'slug' => $request->slug,
+                'parent_id' =>$request->parent_id
+            ]);
+
+            return redirect()->back()->with('success', 'Category has been created successfully.');
+        }
     }
 
     /**
@@ -56,9 +82,9 @@ class CategoryController extends AppBaseController
     {
         $input = $request->all();
 
-        $category = $this->categoryRepository->createCategory($request);
+        $category = $this->categoryRepository->create($input);
 
-        Flash::success('Category saved successfully.');
+        Flash::success(__('messages.saved', ['model' => __('models/categories.singular')]));
 
         return redirect(route('categories.index'));
     }
@@ -75,7 +101,7 @@ class CategoryController extends AppBaseController
         $category = $this->categoryRepository->find($id);
 
         if (empty($category)) {
-            Flash::error('Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/categories.singular')]));
 
             return redirect(route('categories.index'));
         }
@@ -95,7 +121,7 @@ class CategoryController extends AppBaseController
         $category = $this->categoryRepository->find($id);
 
         if (empty($category)) {
-            Flash::error('Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/categories.singular')]));
 
             return redirect(route('categories.index'));
         }
@@ -113,20 +139,17 @@ class CategoryController extends AppBaseController
      */
     public function update($id, UpdateCategoryRequest $request)
     {
-        echo '<pre>';
-        print_r($request);die;
         $category = $this->categoryRepository->find($id);
 
         if (empty($category)) {
-            Flash::error('Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/categories.singular')]));
 
             return redirect(route('categories.index'));
         }
 
-
         $category = $this->categoryRepository->update($request->all(), $id);
 
-        Flash::success('Category updated successfully.');
+        Flash::success(__('messages.updated', ['model' => __('models/categories.singular')]));
 
         return redirect(route('categories.index'));
     }
@@ -145,14 +168,14 @@ class CategoryController extends AppBaseController
         $category = $this->categoryRepository->find($id);
 
         if (empty($category)) {
-            Flash::error('Category not found');
+            Flash::error(__('messages.not_found', ['model' => __('models/categories.singular')]));
 
             return redirect(route('categories.index'));
         }
 
         $this->categoryRepository->delete($id);
 
-        Flash::success('Category deleted successfully.');
+        Flash::success(__('messages.deleted', ['model' => __('models/categories.singular')]));
 
         return redirect(route('categories.index'));
     }
