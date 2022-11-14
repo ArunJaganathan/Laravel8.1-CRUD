@@ -29,10 +29,11 @@ class CategoryController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categories = $this->categoryRepository->all();
+        /*$categories = $this->categoryRepository->all();
 
-        return view('categories.index')
-            ->with('categories', $categories);
+        return view('categories.index')->with('categories', $categories);*/
+        $categories = Category::where('parent_id', null)->orderby('id', 'desc')->get();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -42,13 +43,13 @@ class CategoryController extends AppBaseController
      */
     public function create()
     {
-        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get();
+        $categories = Category::where('parent_id', null)->orderby('id', 'desc')->get();
         return view('categories.create', compact('categories'));
     }
 
     public function createCategory(Request $request)
     {
-        $categories = Category::where('parent_id', null)->orderby('name', 'asc')->get();
+        $categories = Category::where('parent_id', null)->orderby('id', 'desc')->get();
         if($request->method()=='GET')
         {
             return view('create-category', compact('categories'));
@@ -119,14 +120,18 @@ class CategoryController extends AppBaseController
     public function edit($id)
     {
         $category = $this->categoryRepository->find($id);
+        $categories = Category::where('id', $id)->orderby('id', 'desc')->get();
 
-        if (empty($category)) {
+        if (empty($categories)) {
             Flash::error(__('messages.not_found', ['model' => __('models/categories.singular')]));
 
             return redirect(route('categories.index'));
         }
 
-        return view('categories.edit')->with('category', $category);
+        
+
+        //return view('categories.edit')->with('categories', $categories);
+        return view('categories.edit', compact('categories'));
     }
 
     /**
