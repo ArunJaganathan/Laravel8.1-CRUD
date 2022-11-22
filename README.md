@@ -52,8 +52,12 @@ Add Spatie Laravel Permissions package
 ---
 composer require spatie/laravel-permission
 
+To clear cache
+---
 php artisan cache:clear
+
 php artisan config:cache 
+
 php artisan key:generate
 
  Finally to run
