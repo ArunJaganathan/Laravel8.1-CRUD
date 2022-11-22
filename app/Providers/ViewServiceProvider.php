@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers;
+use App\Models\Couponcode;
 use App\Models\Subcategory;
 use App\Models\Category;
 use App\Models\User;
@@ -27,6 +28,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['coupons.fields'], function ($view) {
+            $couponcodeItems = Couponcode::pluck('coupon_code','id')->toArray();
+            $view->with('couponcodeItems', $couponcodeItems);
+        });
         View::composer(['sub_categories.fields'], function ($view) {
             $categoryItems = Category::pluck('title','id')->toArray();
             $view->with('categoryItems', $categoryItems);

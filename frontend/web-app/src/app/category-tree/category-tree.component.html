@@ -1,0 +1,22 @@
+<div class="category-menu">
+    <div class="category-heading">
+        <h2 class="categories-toggle"><span>Categories</span></h2>
+    </div>
+    <div id="cate-toggle" class="category-menu-list">
+        <ul>
+            <li *ngFor="let category of dataList" class="right-menu">
+                <a routerLink="/product/{{category.slug}}">{{category.name}}</a>
+                <ul class="cat-mega-menu">
+                    <li class="right-menu cat-mega-title" *ngFor="let subcategory of category.subcategory">
+                       <a [routerLink]="['product', subcategory.slug]">11{{subcategory.name}}</a>
+                        <ul>
+                            <li *ngFor="let subsubcategory of subcategory.subsubcategory">
+                                <a [routerLink]="['/product/',subsubcategory.slug]" (click)="onClick(subsubcategory)">22{{subsubcategory.name}}</a></li>
+                            
+                        </ul>
+                    </li>                                    
+                </ul>
+            </li>                            
+        </ul>
+    </div>
+</div>

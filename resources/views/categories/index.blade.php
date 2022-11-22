@@ -34,7 +34,7 @@
 
                     <div class="dd" id="nestable">
                         <ol class="dd-list">
-                            <?php //echo '<pre>';print_r($categories);?>
+                            
                             @foreach($categories as $category)
                             <li class="dd-item" data-id="wwww{{ $category->id }}" >
                                 <div class="dd-handle cat" onclick="getDrag('{{ $category->id }}')">{{ $category->name }}</div>

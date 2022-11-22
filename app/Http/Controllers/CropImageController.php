@@ -16,7 +16,10 @@ class CropImageController extends Controller
     public function uploadCropImage(Request $request)
     {
         $folderPath = public_path('upload/');
- 
+        if(isset($_REQUEST['fromwhere']) ){
+            $folderPath = public_path('upload/'.$_REQUEST['fromwhere'].'/');
+        }
+        
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];

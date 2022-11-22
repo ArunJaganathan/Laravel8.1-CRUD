@@ -41,9 +41,10 @@
     <li class="nav-item">
         <a href="{{ route('products.index') }}"
            class="nav-link {{ Request::is('posts*') ? 'active' : '' }}">
-            <i class="far fa-circle nav-icon"></i><p>@lang('models/posts.plural')</p>
+            <i class="far fa-circle nav-icon"></i><p>products</p>
         </a>
     </li>
+    
     
   </ul>
 </li>
@@ -52,6 +53,31 @@
      class="nav-link {{ Request::is('pictures*') ? 'active' : '' }}">
       <p>@lang('models/pictures.plural')</p>
   </a>
+</li>
+<li class="nav-item">
+  <a href="#" class="nav-link">
+    <i class="nav-icon fas fa-circle"></i>
+    <p>
+      Coupon 
+      <i class="right fas fa-angle-left"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+        <a href="{{ route('couponCodes.index') }}"
+           class="nav-link {{ Request::is('posts*') ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i><p>Generate Coupon</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('coupons.index') }}"
+           class="nav-link {{ Request::is('coupons*') ? 'active' : '' }}">
+            <i class="far fa-circle nav-icon"></i><p>@lang('models/coupons.plural')</p>
+        </a>
+    </li>
+    
+    
+  </ul>
 </li>
 
 
@@ -111,4 +137,14 @@
     </li>
     
   </ul>
+
+
+
+
+<li class="nav-item">
+    <a href="{{ route('employees.index') }}"
+       class="nav-link {{ Request::is('employees*') ? 'active' : '' }}">
+        <p>@lang('models/employees.plural')</p>
+    </a>
 </li>
+

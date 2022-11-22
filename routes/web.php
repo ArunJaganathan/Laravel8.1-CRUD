@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CropImageController;
 /*
@@ -50,4 +51,14 @@ Route::group(['middleware' => ['auth']], function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::any('category/create', [App\Http\Controllers\CategoryController::class, 'createCategory'])->name('createCategory');
+Route::any('category/create', [App\Http\Controllers\CategoryController::class,'createCategory'])->name('createCategory');
+Route::resource('coupons', App\Http\Controllers\CouponsController::class);
+Route::resource('couponCodes', App\Http\Controllers\CouponCodeController::class);
+Route::post('/ajax-autocomplete-search', [App\Http\Controllers\CategoryController::class, 'getSubCategory']);
+
+Route::get('api/allcoupons', [App\Http\Controllers\CouponsController::class,'apicoupons']);
+Route::resource('apicategories', App\Http\Controllers\API\CategoryAPIController::class);
+
+
+
+Route::resource('employees', App\Http\Controllers\employeeController::class);

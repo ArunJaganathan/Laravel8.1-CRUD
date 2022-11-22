@@ -15,6 +15,15 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'detail'
+        'name', 'detail','cat_id','sub_cat_id','image'
     ];
+    public function category()
+    {
+        return $this->hasOne(\App\Models\Category::class,'id', 'cat_id');
+    }
+    public function subcategoryZ()
+    {
+        return $this->hasOne(\App\Models\Category::class,'parent_id', 'cat_id');
+    }
+
 }

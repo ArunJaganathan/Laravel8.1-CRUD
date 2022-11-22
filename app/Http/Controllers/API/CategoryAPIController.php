@@ -34,13 +34,28 @@ class CategoryAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categories = $this->categoryRepository->all(
+        $categories = $this->categoryRepository->categoryTree();
+        //echo '<pre>';print_r($categories);die;
+        /*$categories = $this->categoryRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
-        );
+        );*/
 
-        return $this->sendResponse($categories->toArray(), 'Categories retrieved successfully');
+        return $this->sendResponse($categories, 'Categories retrieved successfully');
+    }
+
+    public function getProducts(Request $request)
+    {
+        echo '<pre>';print_r($categories);die;
+    }
+
+    public function categoryTree(Request $request)
+    {
+        $categories = $this->categoryRepository->categoryTree();
+        //echo '<pre>';print_r($categories);die;
+
+        return $this->sendResponse($categories->toArray(), 'Categories retrieved11 successfully');
     }
 
     /**
@@ -77,7 +92,7 @@ class CategoryAPIController extends AppBaseController
             return $this->sendError('Category not found');
         }
 
-        return $this->sendResponse($category->toArray(), 'Category retrieved successfully');
+        return $this->sendResponse($category->toArray(), 'Category retrieved successfullyxxx');
     }
 
     /**

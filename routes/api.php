@@ -24,7 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('categories', App\Http\Controllers\API\CategoryAPIController::class);
+//Route::resource('product/{slug}', App\Http\Controllers\API\CategoryAPIController::class@getProducts);
 
+Route::resource('product', App\Http\Controllers\API\ProductAPIController::class)->parameters([
+    'categories' => 'categories:slug',
+]);
 
 
 
@@ -40,3 +44,6 @@ Route::resource('products', App\Http\Controllers\API\ProductAPIController::class
 
 
 Route::resource('product_tests', App\Http\Controllers\API\ProductTestAPIController::class);
+
+
+Route::resource('coupon_codes', App\Http\Controllers\API\CouponCodeAPIController::class);

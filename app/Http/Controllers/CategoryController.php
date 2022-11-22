@@ -184,4 +184,9 @@ class CategoryController extends AppBaseController
 
         return redirect(route('categories.index'));
     }
+
+    public function getSubCategory(Request $request)
+    {
+        print_r($request);
+    }
 }

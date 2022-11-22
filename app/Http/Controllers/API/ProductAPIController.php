@@ -71,13 +71,13 @@ class ProductAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Product $product */
-        $product = $this->productRepository->find($id);
+        $product = $this->productRepository->getProducts($id);
 
         if (empty($product)) {
             return $this->sendError('Product not found');
         }
 
-        return $this->sendResponse($product->toArray(), 'Product retrieved successfully');
+        return $this->sendResponse($product->toArray(), 'Product retrieved successfullyqq');
     }
 
     /**

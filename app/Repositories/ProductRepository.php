@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Models\Category;
 use App\Repositories\BaseRepository;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class ProductRepository
  * @package App\Repositories
@@ -41,5 +42,20 @@ class ProductRepository extends BaseRepository
     public function model()
     {
         return Product::class;
+    }
+    public function getProducts($slug)
+    {
+        $categories = Category::where('slug', $slug)->first();
+        $categoryId = $categories->id;
+        $categoryName = $categories->name;
+        $products = Product::where('cat_id', $categoryId)->orderby('id', 'desc')->get();
+        foreach ($products as $key => $product) {
+            $products[$key]['id']  = $product->id;
+            $products[$key]['name']  = $product->name;
+            $products[$key]['description']  = $product->detail;
+            $products[$key]['productImg']  = 'http://localhost:8000/upload/product/'.$product->image;
+            $products[$key]['category']  = $categoryName;
+        }
+        return $products;
     }
 }
