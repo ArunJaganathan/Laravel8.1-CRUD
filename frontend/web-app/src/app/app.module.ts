@@ -19,6 +19,7 @@ import { Home3Component } from './home3/home3.component';
 import { Home4Component } from './home4/home4.component';
 import { ProductsComponent } from './products/products.component';
 import { CategoryTreeComponent } from './category-tree/category-tree.component';
+import { ArunComponent } from './arun/arun.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CategoryTreeComponent } from './category-tree/category-tree.component';
     Home3Component,
     Home4Component,
     ProductsComponent,
-    CategoryTreeComponent
+    CategoryTreeComponent,
+    ArunComponent
   ],
   imports: [
     BrowserModule,

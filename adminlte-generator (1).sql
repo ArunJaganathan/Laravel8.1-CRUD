@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 01:14 PM
+-- Generation Time: Nov 22, 2022 at 08:48 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -66,7 +66,87 @@ INSERT INTO `categories` (`id`, `title`, `name`, `description`, `status`, `paren
 (20, NULL, 'Necklaces & Pendants', NULL, 0, 14, 'Necklaces & Pendants', NULL, '2022-11-14 06:23:29', '2022-11-14 06:23:29', NULL),
 (21, NULL, 'Fine Jewelry', NULL, 0, 14, 'Fine Jewelry', NULL, '2022-11-14 06:32:09', '2022-11-14 06:32:09', NULL),
 (22, NULL, 'Earrings', NULL, 0, 20, 'Earrings', NULL, '2022-11-14 06:32:22', '2022-11-14 06:32:22', NULL),
-(23, NULL, 'Silver Jewelry', NULL, 0, 21, 'Silver Jewelry', NULL, '2022-11-14 06:32:50', '2022-11-14 06:32:50', NULL);
+(23, NULL, 'Silver Jewelry', NULL, 0, 21, 'Silver Jewelry', NULL, '2022-11-14 06:32:50', '2022-11-14 06:32:50', NULL),
+(24, NULL, 'Health & Beauty', NULL, 0, NULL, 'Health & Beauty', NULL, '2022-11-20 07:52:48', '2022-11-20 07:52:48', NULL),
+(25, NULL, 'Makeup', NULL, 0, 24, 'Makeup', NULL, '2022-11-20 07:53:11', '2022-11-20 07:53:11', NULL),
+(26, NULL, 'Eye Shadow', NULL, 0, 25, 'Eye-Shadow', NULL, '2022-11-20 07:53:46', '2022-11-20 07:53:46', NULL),
+(27, NULL, 'Mascara', NULL, 0, 25, 'Mascara', NULL, '2022-11-21 07:05:57', '2022-11-21 07:05:57', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `couponcode`
+--
+
+CREATE TABLE `couponcode` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `coupon_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_date` datetime NOT NULL,
+  `expiry_date` datetime NOT NULL,
+  `coupon_count` smallint(6) NOT NULL,
+  `coupon_type` smallint(6) NOT NULL,
+  `status` enum('1','0') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `couponcode`
+--
+
+INSERT INTO `couponcode` (`id`, `coupon_code`, `start_date`, `expiry_date`, `coupon_count`, `coupon_type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'WELCOME', '2022-11-15 12:11:35', '2022-11-30 12:11:36', 3, 1, '1', '2022-11-15 01:11:42', '2022-11-15 01:11:42', NULL),
+(2, 'WELCOME2', '2022-11-15 12:29:29', '2022-11-30 12:29:31', 5, 1, '1', '2022-11-15 01:29:37', '2022-11-15 01:29:37', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `coupons`
+--
+
+CREATE TABLE `coupons` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `coupon_code_id` int(11) NOT NULL,
+  `codes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_used` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_used` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `coupon_code_id`, `codes`, `is_used`, `status`, `user_id`, `date_used`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'WELCOME_4YE', 0, 1, 1, '2022-11-15', '2022-11-15 01:11:43', '2022-11-15 01:11:43', NULL),
+(2, 1, 'WELCOME_4YE', 0, 1, 1, '2022-11-15', '2022-11-15 01:11:43', '2022-11-15 01:11:43', NULL),
+(3, 1, 'WELCOME_4YE', 0, 1, 1, '2022-11-15', '2022-11-15 01:11:44', '2022-11-15 01:11:44', NULL),
+(4, 2, 'WELCOME2_J5E', 0, 1, 1, '2022-11-15', '2022-11-15 01:29:37', '2022-11-15 01:29:37', NULL),
+(5, 2, 'WELCOME2_J5E', 1, 1, 1, '2022-11-15', '2022-11-15 01:29:37', '2022-11-15 01:29:37', NULL),
+(6, 2, 'WELCOME2_J5E', 0, 1, 1, '2022-11-15', '2022-11-15 01:29:37', '2022-11-15 01:29:37', NULL),
+(7, 2, 'WELCOME2_J5E', 1, 1, 1, '2022-11-15', '2022-11-15 01:29:37', '2022-11-15 01:29:37', NULL),
+(8, 2, 'WELCOME2_J5E', 0, 1, 1, '2022-11-15', '2022-11-15 01:29:37', '2022-11-15 01:29:37', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -114,7 +194,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2022_11_06_083825_create_posts_table', 9),
 (21, '2022_11_08_052443_create_pictures_table', 10),
 (22, '2022_11_11_110340_create_permission_tables', 11),
-(23, '2022_11_11_110714_create_products_table', 12);
+(23, '2022_11_11_110714_create_products_table', 12),
+(27, '2022_11_14_140049_create_couponcode_table', 13),
+(28, '2022_11_15_050035_create_coupons_table', 14),
+(29, '2022_11_19_163030_create_employees_table', 15);
 
 -- --------------------------------------------------------
 
@@ -146,7 +229,8 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 1),
-(2, 'App\\Models\\User', 2);
+(2, 'App\\Models\\User', 2),
+(3, 'App\\Models\\User', 4);
 
 -- --------------------------------------------------------
 
@@ -229,7 +313,11 @@ CREATE TABLE `pictures` (
 INSERT INTO `pictures` (`id`, `profile_name`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 'AAAA', '636e293abd82b.png', '2022-11-11 05:21:40', '2022-11-11 05:21:40', NULL),
 (3, 'BBBB', '636e3d800549e.png', '2022-11-11 06:48:10', '2022-11-11 06:48:10', NULL),
-(4, 'ads Sunday', '6370f535ddf7c.png', '2022-11-13 08:16:38', '2022-11-13 08:16:38', NULL);
+(4, 'ads Sunday', '6370f535ddf7c.png', '2022-11-13 08:16:38', '2022-11-13 08:16:38', NULL),
+(5, 'adsada', '63734ee3b7e3e.png', '2022-11-15 03:03:41', '2022-11-15 03:03:41', NULL),
+(6, 'asdasd', '637905d319cc8.png', '2022-11-19 11:05:32', '2022-11-19 11:05:32', NULL),
+(7, 'zsdfaaaaaaaaaaa', '637b64e4569be.png', '2022-11-21 06:15:57', '2022-11-21 06:15:57', NULL),
+(8, 'wwwwww2222', '637b65dc21e87.png', '2022-11-21 06:20:04', '2022-11-21 06:20:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -261,8 +349,11 @@ INSERT INTO `posts` (`id`, `title`, `description`, `created_at`, `updated_at`, `
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cat_id` int(9) NOT NULL,
+  `sub_cat_id` int(9) DEFAULT NULL,
+  `image` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -271,8 +362,12 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `detail`, `created_at`, `updated_at`) VALUES
-(1, 'oba_dev', 'qweq', '2022-11-11 06:23:20', '2022-11-11 06:23:20');
+INSERT INTO `products` (`id`, `name`, `detail`, `cat_id`, `sub_cat_id`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Makeup Eye shadow WILD WEST', '<p>Welcome to our fashion store, our company is mainly engaged in the sales of keychains, fashion bags, handbags, sunglasses, shoes and cosmetics. The company has been established for 5 years, mainly based on integrity management, first-class service, superior supply of goods, and fast delivery as its operating principles. If you have any questions during the purchase process, you can communicate with our customer service staff at any time, and we will answer your questions as soon as possible. You can also buy all the items of our company. Large orders have big discounts, I wish you a happy shopping, thank you!</p>', 26, NULL, '637b6f5714166.png', '2022-11-21 07:00:18', '2022-11-21 07:40:13'),
+(2, 'Dual colors Eye Shadow Palette Shimmer', '<p>Dual colors Eye Shadow Palette Shimmer Gradient Makeup Waterproof Long Lasting Makeup Powerder Eyeshadow mixed Color Change glitter Matter</p>', 26, NULL, '637b6ffb6b778.png', '2022-11-21 07:03:53', '2022-11-21 07:40:02'),
+(3, 'New Liquid Lash Extensions Mascara', '<p>New Liquid Lash Extensions Mascara Brynn Rich Black Mascara Lashes Brand Cosmetics Dramatic Long 0.38oz Full Size 10.7g</p>', 27, NULL, '637b712b656e9.png', '2022-11-21 07:08:06', '2022-11-21 07:39:35'),
+(4, 'Newest 2 Colors Eye Shadow Platette Matte Polarized Glitter', '<p>Newest 2 Colors Eye Shadow Platette Matte Polarized GlitterNewest 2 Colors Eye Shadow Platette Matte Polarized GlitterNewest 2 Colors Eye Shadow Platette Matte Polarized GlitterNewest 2 Colors Eye Shadow Platette Matte Polarized GlitterNewest 2 Colors Eye Shadow Platette Matte Polarized GlitterNewest 2 Colors Eye Shadow Platette Matte Polarized GlitterNewest 2 Colors Eye Shadow Platette Matte Polarized GlitterNewest 2 Colors Eye Shadow Platette Matte Polarized Glitter</p>', 26, NULL, '637c48ef28ee4.png', '2022-11-21 22:30:27', '2022-11-21 22:30:27'),
+(5, 'STOCK James Charles Palette Eyeshadow', '<p>STOCK James Charles Palette EyeshadowSTOCK James Charles Palette EyeshadowSTOCK James Charles Palette EyeshadowSTOCK James Charles Palette EyeshadowSTOCK James Charles Palette EyeshadowSTOCK James Charles Palette Eyeshadow</p>', 26, NULL, '637c779167544.png', '2022-11-22 01:48:03', '2022-11-22 01:48:03');
 
 -- --------------------------------------------------------
 
@@ -294,7 +389,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'web', '2022-11-11 05:57:37', '2022-11-11 06:46:24'),
-(2, 'Admin', 'web', '2022-11-11 06:08:57', '2022-11-11 06:46:40');
+(2, 'Admin', 'web', '2022-11-11 06:08:57', '2022-11-11 06:46:40'),
+(3, 'New role', 'web', '2022-11-15 03:01:39', '2022-11-15 03:01:39');
 
 -- --------------------------------------------------------
 
@@ -313,7 +409,9 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
+(1, 3),
 (2, 1),
+(2, 3),
 (3, 1),
 (4, 1),
 (5, 1),
@@ -372,7 +470,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Hardik Savani', 'admin@gmail.com', NULL, '$2y$10$gcpFbEYUwieKgMsZHW.Ja.Pvh9b4B3lqb1VqK0OVQ9..ylyGefDIy', NULL, '2022-11-11 05:57:37', '2022-11-11 05:57:37'),
-(2, 'admin', 'subadmin@gmail.com', NULL, '$2y$10$Dbipdv358sAXq8KmV6ciu.EaYLuXWsGl9fwTDgIUIpqoh/efOhzzG', NULL, '2022-11-11 06:09:29', '2022-11-11 06:50:48');
+(2, 'admin', 'subadmin@gmail.com', NULL, '$2y$10$Dbipdv358sAXq8KmV6ciu.EaYLuXWsGl9fwTDgIUIpqoh/efOhzzG', NULL, '2022-11-11 06:09:29', '2022-11-11 06:50:48'),
+(4, 'test', 'test@gmail.com', NULL, '$2y$10$h9ggViEfrHrCbFbeTPwTWu4bX4mLJc4ap8thAC2vHsnIiH36sUJz6', NULL, '2022-11-15 03:02:04', '2022-11-15 03:02:04');
 
 --
 -- Indexes for dumped tables
@@ -382,6 +481,24 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `couponcode`
+--
+ALTER TABLE `couponcode`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -485,7 +602,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `couponcode`
+--
+ALTER TABLE `couponcode`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -497,7 +632,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -515,7 +650,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -527,13 +662,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
@@ -545,7 +680,7 @@ ALTER TABLE `sub_categories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
