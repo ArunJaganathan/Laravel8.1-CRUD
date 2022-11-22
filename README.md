@@ -5,6 +5,7 @@ Laravel 8 CRUD GENERATOR
  - PHP version (8.1 => https://www.apachefriends.org/index.html)
  - need to install node JS (The official Node.js website has installation instructions for Node.js: https://nodejs.org)
  - need to install Laravel(8.0 through composer ==> from https://laravel.com/docs/8.x/installation)
+ - update .ENV file (DB name, username & Password)
 
 Step 1
 ---
@@ -45,6 +46,15 @@ To Generate New View
  - to map foregin key => author_id  integer selectTable:users:name,id
  - status integer select:Draft:1,Published:2,Archived:3
  - status integer radio:Draft:1,Published:2
+
+
+Add Spatie Laravel Permissions package
+---
+composer require spatie/laravel-permission
+
+php artisan cache:clear
+php artisan config:cache 
+php artisan key:generate
 
  Finally to run
  ---
